@@ -8,4 +8,3 @@ for i in range(n):
         zaochno += 1
 
 print(f"Очно: {ochno}; Заочно: {zaochno}")
-``````
