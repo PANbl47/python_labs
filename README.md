@@ -58,3 +58,18 @@ print(f"Инициалы: {str_first_letters}")
 print(f"Длина (символов): {len(FIO_w_2spases)}")
 ```
 ![Картинка 5](./images/lab01/05.png)
+
+## Задание номер 6
+```python
+n = int(input("Пришло людей: "))
+ochno = zaochno = 0
+for i in range(n):
+    info = input().split()
+    if info[3] == "True":
+        ochno += 1
+    else:
+        zaochno += 1
+
+print(f"Очно: {ochno}; Заочно: {zaochno}")
+```
+![Картинка 6](./images/lab01/06.png)
