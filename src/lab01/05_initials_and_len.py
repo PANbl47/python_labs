@@ -1,4 +1,7 @@
 FIO = input("ФИО: ")
+countt = 0
+while '  ' in FIO:
+    FIO = FIO.replace('  ', ' ')
 words = FIO.split()
 FIO_w_2spases = FIO.rstrip().lstrip()
 first_letters = []
