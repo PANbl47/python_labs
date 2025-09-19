@@ -46,6 +46,9 @@ print(f"{hours}:{minn_time}")
 ### Задание номер 5
 ```python
 FIO = input("ФИО: ")
+countt = 0
+while '  ' in FIO:
+    FIO = FIO.replace('  ', ' ')
 words = FIO.split()
 FIO_w_2spases = FIO.rstrip().lstrip()
 first_letters = []
