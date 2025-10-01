@@ -90,8 +90,7 @@ def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
 
 def unique_sorted(nums: list[float | int]) -> list[float | int]:
     
-    nums = set(nums)
-    nums = list(nums)
+    nums = sorted(set(nums))
     return nums
 
 
