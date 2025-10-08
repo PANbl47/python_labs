@@ -178,8 +178,6 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
 ```python
 def format_record(rec: tuple[str, str, float]) -> str:
     fio_clean = rec[0].strip()
-    while "  " in fio_clean:
-        fio_clean = fio_clean.replace('  ', ' ')
     FIO = fio_clean.split()
 
     gpa = round(rec[2], 2)
@@ -190,5 +188,6 @@ def format_record(rec: tuple[str, str, float]) -> str:
         return f"{FIO[0]}{FIO[0][1:]} {FIO[1][0].upper()}. , гр. {rec[1]}, GPA {gpa:.2f}"
     else:
         raise ValueError
+    
 ```
 ![Картинка 1](./images/lab02/07.png)
