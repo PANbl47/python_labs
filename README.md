@@ -154,13 +154,16 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
 def col_sums(mat: list[list[float | int]]) -> list[float]:
 
     sum_list = []
-    
+
+    if not mat or not mat[0]:
+        return []
+
     row_len = len(mat[0])
     for row in mat:
         if len(row) != row_len:
             raise ValueError
          
-    for i in range(len(mat[0])):
+    for i in range (row_len):
         summ = 0
         for k in range(len(mat)):
             summ += mat[k][i]
