@@ -84,13 +84,14 @@ print(f"Очно: {ochno}; Заочно: {zaochno}")
 def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
     
     if len(nums) <= 0:
-        return ValueError
+        raise ValueError
     return (min(nums),max(nums))
 
 
 def unique_sorted(nums: list[float | int]) -> list[float | int]:
     
-    nums = sorted(set(nums))
+    nums = set(nums)
+    nums = list(nums)
     return nums
 
 
@@ -99,23 +100,15 @@ def flatten(mat: list[list | tuple]) -> list:
     true_mat = []
     for i in mat:
         if not isinstance(i, (list, tuple)):
-            print("TypeError")
-            return
+            raise TypeError
         for k in i:
             if isinstance(k,str):
-                print("TypeError")
-                return 
+                raise   TypeError
             
     for i in range(len(mat)):
         for k in mat[i]:
             true_mat.append(k)
     return true_mat
-            
-print(flatten([
-    [1,2,3],
-    [],
-    [4,5]
-]))
 ```
 ![Картинка 1](./images/lab02/01.png)
 ![Картинка 1](./images/lab02/02.png)
@@ -126,11 +119,13 @@ print(flatten([
 ```python
 def transpose(mat: list[list[float | int]]) -> list[list]:
     result = []
-    
+
+    if len(mat) == 1 and not mat[0]:
+        return []
+        
     for i in range(len(mat) - 1):
         if len(mat[i]) < len(mat[i+1]) or (len(mat[i]) > len(mat[i+1])):
-            print('ValueError')
-            return
+            raise ValueError
     
     for i in range(len(mat[0])):
         new_list = []
@@ -144,9 +139,14 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
     
     sum_list = []
     
+    row_len = len(mat[0])
+    for row in mat:
+        if len(row) != row_len:
+            raise ValueError
+        
     for i in range(len(mat)):
         summ = 0
-        for k in (mat[i]):
+        for k in mat[i]:
             summ += k
         sum_list.append(summ)
     return sum_list
@@ -154,7 +154,12 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
 def col_sums(mat: list[list[float | int]]) -> list[float]:
 
     sum_list = []
-
+    
+    row_len = len(mat[0])
+    for row in mat:
+        if len(row) != row_len:
+            raise ValueError
+         
     for i in range(len(mat[0])):
         summ = 0
         for k in range(len(mat)):
@@ -162,11 +167,6 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
         sum_list.append(summ)
     
     return sum_list
-
-print(col_sums([
-    [1,2,3],
-    [4,5,6]
-]))
 ```
 
 ![Картинка 1](./images/lab02/04.png)
@@ -182,14 +182,13 @@ def format_record(rec: tuple[str, str, float]) -> str:
         fio_clean = fio_clean.replace('  ', ' ')
     FIO = fio_clean.split()
 
-    if len(FIO) == 3:
-        
-        return f"{FIO[0]} {FIO[1][0]}.{FIO[2][0]}., гр. {rec[1]}, GPA {round(rec[2]):.2f} "
-    elif len(FIO) == 2:
-        return f"{FIO[0]} {FIO[1][0]}., гр. {rec[1]}, GPA {round(rec[2]):.2f}"
-    else:
-        return('ValueError')
+    gpa = round(rec[2], 2)
 
-print(format_record(('    Пономаренко     Александр        Сергеевич    ','БИВТ-25', 3.49)))  
+    if len(FIO) == 3:
+        return f"{FIO[0][0].upper()}{FIO[0][1:]} {FIO[1][0].upper()}.{FIO[2][0].upper()}. , гр. {rec[1]}, GPA {gpa:.2f}"
+    elif len(FIO) == 2:
+        return f"{FIO[0]}{FIO[0][1:]} {FIO[1][0].upper()}. , гр. {rec[1]}, GPA {gpa:.2f}"
+    else:
+        raise ValueError
 ```
 ![Картинка 1](./images/lab02/07.png)
