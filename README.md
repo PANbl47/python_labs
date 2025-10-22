@@ -111,8 +111,8 @@ def flatten(mat: list[list | tuple]) -> list:
     return true_mat
 ```
 ![Картинка 1](./images/lab02/01.png)
-![Картинка 1](./images/lab02/02.png)
-![Картинка 1](./images/lab02/03.png)
+![Картинка 2](./images/lab02/02.png)
+![Картинка 3](./images/lab02/03.png)
 
 ### Задание номер 2
 
@@ -169,9 +169,9 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
     return sum_list
 ```
 
-![Картинка 1](./images/lab02/04.png)
-![Картинка 1](./images/lab02/05.png)
-![Картинка 1](./images/lab02/06.png)
+![Картинка 4](./images/lab02/04.png)
+![Картинка 5](./images/lab02/05.png)
+![Картинка 6](./images/lab02/06.png)
 
 ### Задание номер 3
 
@@ -190,4 +190,98 @@ def format_record(rec: tuple[str, str, float]) -> str:
         raise ValueError
     
 ```
-![Картинка 1](./images/lab02/07.png)
+![Картинка 7](./images/lab02/07.png)
+
+## Лабораторная работа 3
+
+### Задание номер 1
+
+```python
+def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
+    
+    if casefold:
+        text = text.casefold()
+    
+    if yo2e:
+        text = text.replace('ё','е').replace("Ё","Е")
+    
+    for ch in ['\n', '\r', '\t']:
+        text = text.replace(ch, ' ')
+    
+    while '  ' in text:
+        text = text.replace('  ', ' ')
+
+    return text.strip()
+
+legal_chars = set()
+
+for i in range(65, 123):
+    legal_chars.add(chr(i))
+
+
+for i in range(1040, 1104):
+    legal_chars.add(chr(i))
+
+for i in range(0, 10):
+    legal_chars.add(str(i)) 
+
+legal_chars.update(['-', '_'])
+
+def tokenize(text: str) -> list[str]:
+    
+    true_text = ''
+
+    for ch in text:
+        
+        if ch in legal_chars:
+            true_text += ch
+        
+        else:
+            true_text += ' ' 
+    
+    true_text = normalize(true_text)
+    
+    return true_text.split()
+
+
+def count_freq(tokens: list[str]) -> dict[str, int]:
+
+    sbor = {}
+
+    for i in range (len(tokens)):
+
+        if tokens[i] in sbor:
+            continue
+
+        else:
+            sbor[tokens[i]] = tokens.count(tokens[i])
+
+    return sbor
+
+def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+
+    sorted_items = sorted(freq.items(), key=lambda item: (-item[1], item[0]))
+    
+    return sorted_items[:n]
+```
+
+```python
+from src.lib.text import *
+
+print(normalize("ПрИвЕт\nМИр\t"))
+print(normalize("ёжик, Ёлка", yo2e=True))
+print(normalize("Hello\r\nWorld"))
+print(normalize("  двойные   пробелы  "))
+
+
+print(tokenize("привет мир"))
+print(tokenize("hello,world!!!"))
+print(tokenize("по-настоящему круто"))
+print(tokenize("2025 год"))
+print(tokenize("emoji 😀 не слово"))
+
+print(top_n(count_freq(["a", "b", "a", "c", "b", "a"]), n=2))
+print(top_n(count_freq(["bb", "aa", "bb", "aa", "cc"]), n=2))
+```
+
+![Картинка 1](./images/lab03/A.png)

@@ -1,18 +1,14 @@
 def format_record(rec: tuple[str, str, float]) -> str:
     fio_clean = rec[0].strip()
-    while "  " in fio_clean:
-        fio_clean = fio_clean.replace('  ', ' ')
     FIO = fio_clean.split()
 
+    gpa = round(rec[2], 2)
+
     if len(FIO) == 3:
-        
-        return f"{FIO[0]} {FIO[1][0]}.{FIO[2][0]}., гр. {rec[1]}, GPA {round(rec[2]):.2f} "
+        return f"{FIO[0][0].upper()}{FIO[0][1:]} {FIO[1][0].upper()}.{FIO[2][0].upper()}. , гр. {rec[1]}, GPA {gpa:.2f}"
     elif len(FIO) == 2:
-        return f"{FIO[0]} {FIO[1][0]}., гр. {rec[1]}, GPA {round(rec[2]):.2f}"
+        return f"{FIO[0]}{FIO[0][1:]} {FIO[1][0].upper()}. , гр. {rec[1]}, GPA {gpa:.2f}"
     else:
-        return('ValueError')
-
-print(format_record(('    Пономаренко     Александр        Сергеевич    ','БИВТ-25', 3.49)))  
-
-
-
+        raise ValueError
+    
+print(format_record((("  сидорова  анна   сергеевна ", "ABB-01", 3.999))))
