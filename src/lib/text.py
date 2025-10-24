@@ -1,3 +1,5 @@
+import re
+
 def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
     
     if casefold:
@@ -14,6 +16,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 
     return text.strip()
 
+"""
 legal_chars = set()
 
 for i in range(65, 123):
@@ -43,7 +46,14 @@ def tokenize(text: str) -> list[str]:
     true_text = normalize(true_text)
     
     return true_text.split()
+"""
 
+def tokenize(text: str) -> list[str]:
+
+    text = normalize(text, casefold=True, yo2e=True)
+    pattern = r'\w+(?:-\w+)*'
+
+    return re.findall(pattern, text)
 
 def count_freq(tokens: list[str]) -> dict[str, int]:
 

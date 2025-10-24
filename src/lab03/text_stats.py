@@ -1,20 +1,22 @@
 import sys
-from src.lib.text import tokenize, count_freq, top_n
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from src.lib.text import*
 
-def main():
+text = sys.stdin.read()
 
-    text = sys.stdin.read()
+textn = text
 
-    tokens = tokenize(text)
+text = normalize(text)
+text = tokenize(text)
+textn = text
+top = top_n(count_freq(text), n = 5)
+text = top_n(count_freq(text))
 
-    freq = count_freq(tokens)
 
-    print(f"Всего слов: {len(tokens)}")
-    print(f"Уникальных слов: {len(freq)}")
+print(f"Всего слов: {len(textn)}")
+print(f"Уникальных слов: {len(text)}")
+print("Топ-5:")
+for word, count in top:
+    print(f"{word}: {count}")
 
-    print("Топ-5:")
-    for word, count in top_n(freq, 5):
-        print(f"{word}:{count}")
-
-if __name__ == "__main__":
-    main()
