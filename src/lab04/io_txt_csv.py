@@ -9,6 +9,10 @@ def read_text(path: str | Path, encording: str = "utf-8") -> str:
     if p.exists() == False:
         raise FileNotFoundError
     
+    if len(p.read_text(encoding = encording)) <= 0:
+
+        return '' 
+    
     return p.read_text(encoding = encording)
 
 def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...] | None = None) -> None:
@@ -29,3 +33,5 @@ def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...
 
         for r in rows:
             w.writerow(r)
+    
+    

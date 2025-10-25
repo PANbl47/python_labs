@@ -8,11 +8,11 @@ a = tokenize(a)
 a = count_freq(a)
 a = top_n(a)
 
-print(write_csv(
+write_csv(
     rows = a, 
     path = "C:\\VSprojects\\python_labs\\data\\lab04\\report.csv",
-    header=["Слово","Кол-во"]  
-))
+    header=["Word","Count"]  
+)
 
 #Задание B
 
@@ -22,12 +22,14 @@ b = tokenize(b)
 b_ = b
 b = count_freq(b)
 top = top_n(b,5)
+b = top_n(b)
 
-print(write_csv(
+
+write_csv(
     rows = b, 
     path = "C:\\VSprojects\\python_labs\\data\\lab04\\report.csv",
-    header=["Word","count"]  
-))
+    header=["Word","Count"]
+)
 
 print(f"Всего слов: {len(b_)}")
 print(f"Уникальных слов: {len(b)}")
