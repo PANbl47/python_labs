@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 from typing import Iterable, Sequence
 
-def read_text(path: str | Path, encording: str = "utf-8") -> str:
+def read_text(path: str | Path, encording: str = "cp1251") -> str:
 
     p = Path(path)
 
@@ -25,7 +25,7 @@ def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...
         if len(rows[i]) != len(rows[i+1]):
             raise ValueError
 
-    with p.open("w", newline="", encoding="utf-8-sig") as f:
+    with p.open("w", newline="", encoding="cp1251") as f:
         w = csv.writer(f)
 
         if header is not None:
