@@ -62,13 +62,13 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
     """
 ```
 
-![Картинка 1](./images/lab05/51.png)
+![Картинка 1](./images/lab05/51.jpg)
 
-![Картинка 2](./images/lab05/52.png)
+![Картинка 2](./images/lab05/52.jpg)
 
-![Картинка 3](./images/lab05/53.png)
+![Картинка 3](./images/lab05/53.jpg)
 
-![Картинка 4](./images/lab05/54.png)
+![Картинка 4](./images/lab05/54.jpg)
 
 ### Задание номер 2
 
@@ -108,6 +108,6 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     xlsx_book.save(xlsx_path)
 ```
 
-![Картинка 5](./images/lab05/55.png)
+![Картинка 5](./images/lab05/55.jpg)
 
-![Картинка 6](./images/lab05/56.png)
+![Картинка 6](./images/lab05/56.jpg)
