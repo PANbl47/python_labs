@@ -6,14 +6,14 @@ b = normalize(b)
 b = tokenize(b)
 b_ = b
 b = count_freq(b)
-top = top_n(b,5)
+top = top_n(b, 5)
 b = top_n(b)
 
 
 write_csv(
-    rows = b, 
-    path = "C:\\VSprojects\\python_labs\\data\\lab04\\report.csv",
-    header=["Word","Count"]
+    rows=b,
+    path="C:\\VSprojects\\python_labs\\data\\lab04\\report.csv",
+    header=["Word", "Count"],
 )
 
 print(f"Всего слов: {len(b_)}")

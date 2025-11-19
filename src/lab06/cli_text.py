@@ -2,6 +2,7 @@ import argparse
 from src.lib.text import count_freq, tokenize, normalize, top_n
 from pathlib import Path
 
+
 def main():
     parser = argparse.ArgumentParser(description="CLI‑утилиты лабораторной №6")
     subparsers = parser.add_subparsers(dest="command")
@@ -17,9 +18,9 @@ def main():
     args = parser.parse_args()
 
     if args.command == "cat":
-        """ Реализация команды cat """
+        """Реализация команды cat"""
 
-        with Path(args.input).open("r", newline='', encoding = 'utf8') as f:
+        with Path(args.input).open("r", newline="", encoding="utf8") as f:
             people = f.read()
             list_p = people.split()
 
@@ -35,16 +36,16 @@ def main():
                 print(f"{peo}")
 
     elif args.command == "stats":
-        """ Реализация команды stats """
+        """Реализация команды stats"""
 
-        with Path(args.input).open("r", newline='', encoding = 'utf8') as f:
+        with Path(args.input).open("r", newline="", encoding="utf8") as f:
             people = f.read()
 
         final = top_n(count_freq(tokenize(normalize(people))), args.top)
 
         for word, count in final:
             print(f"{word}: {count}")
-        
+
+
 if __name__ == "__main__":
     main()
-       

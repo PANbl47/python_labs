@@ -14,13 +14,3 @@ print(tokenize("emoji 😀 не слово"))
 
 print(top_n(count_freq(["a", "b", "a", "c", "b", "a"]), n=2))
 print(top_n(count_freq(["bb", "aa", "bb", "aa", "cc"]), n=2))
-
-
-
-
-
-
-
-        
-
-

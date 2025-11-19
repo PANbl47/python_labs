@@ -2,6 +2,7 @@ import openpyxl
 from pathlib import Path
 import csv
 
+
 def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     """
     Конвертирует CSV в XLSX.
@@ -15,26 +16,21 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
 
     if csv_path.exists() == False:
         raise FileNotFoundError
-    
-    if len(csv_path.read_text(encoding = "utf-8")) <= 0:
+
+    if len(csv_path.read_text(encoding="utf-8")) <= 0:
         return ""
-    
+
     xlsx_book = openpyxl.Workbook()
     xlsx_sheet1 = xlsx_book.active
     xlsx_sheet1.title = "Sheet1"
 
-    with csv_path.open('r',encoding = 'utf-8') as f:
+    with csv_path.open("r", encoding="utf-8") as f:
         csv_read = csv.reader(f)
-        
+
         for row in csv_read:
             xlsx_sheet1.append(row)
 
-
     xlsx_book.save(xlsx_path)
 
-csv_to_xlsx("data\\samples\\people.csv","data\\out\\people.xlsx")
 
-
-
-    
-    
+csv_to_xlsx("data\\samples\\people.csv", "data\\out\\people.xlsx")
